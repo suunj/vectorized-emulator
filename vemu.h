@@ -54,5 +54,7 @@ void     mmu_load_code(MMU *m, uint32_t addr, const uint8_t *code, int len);
 void     mmu_set_perm(MMU *m, uint32_t start, uint32_t len, uint8_t perm);
 
 void exec_scalar(MMU *m, CPU *cpus, int lane);
+bool exec_simd(MMU *m, CPU *cpus);
+void run(MMU *m, CPU *cpus);
 
 #endif
