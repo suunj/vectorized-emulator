@@ -42,6 +42,12 @@ typedef struct {
     int      exit;
 } CPU;
 
+/* ═══ Snapshot ═══ */
+typedef struct {
+    CPU     cpus[NUM_LANES];
+    uint8_t data[NUM_LANES][MEM_SIZE];
+} Snapshot;
+
 void     mmu_init(MMU *m);
 uint8_t  mmu_read8(MMU *m, int lane, uint32_t addr);
 void     mmu_write8(MMU *m, int lane, uint32_t addr, uint8_t val);
@@ -56,5 +62,8 @@ void     mmu_set_perm(MMU *m, uint32_t start, uint32_t len, uint8_t perm);
 void exec_scalar(MMU *m, CPU *cpus, int lane);
 bool exec_simd(MMU *m, CPU *cpus);
 void run(MMU *m, CPU *cpus);
+
+void snap_save(Snapshot *s, CPU *cpus, MMU *m);
+void snap_restore(Snapshot *s, CPU *cpus, MMU *m);
 
 #endif
