@@ -66,4 +66,8 @@ void run(MMU *m, CPU *cpus);
 void snap_save(Snapshot *s, CPU *cpus, MMU *m);
 void snap_restore(Snapshot *s, CPU *cpus, MMU *m);
 
+int load_flat_binary(MMU *m, const char *path, uint32_t base);
+int save_snapshot_files(const char *dir, CPU *cpus, MMU *m);
+int load_snapshot_files(const char *dir, CPU *cpus, MMU *m);
+
 #endif
